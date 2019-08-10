@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+import django_heroku
 import os
 import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -185,3 +185,5 @@ CORS_ALLOW_METHODS = (
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=900),
 }
+# Activate Django-Heroku.
+django_heroku.settings(locals())
