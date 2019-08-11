@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '7*%l@06s2e+^%ujs^@nl@ek26zz3&-o_7kz%knz0an70l*75=8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -168,6 +168,8 @@ REST_FRAMEWORK = {
 }
 SITE_ID = 1
 CORS_ORIGIN_WHITELIST = (
+    'https://reservhost.firebaseapp.com/'
+    'https://reservhost.web.app/'
     'https://google.com',
     'https://hostname.example.com',
     'https://localhost:8000',
