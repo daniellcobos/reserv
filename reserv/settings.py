@@ -50,9 +50,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -167,15 +167,7 @@ REST_FRAMEWORK = {
     ),
 }
 SITE_ID = 1
-CORS_ORIGIN_WHITELIST = (
-    'https://reservhost.firebaseapp.com'
-    'https://reservhost.web.app'
-    'https://google.com',
-    'https://hostname.example.com',
-    'https://localhost:8000',
-    'http://localhost:4200',
-    'https://127.0.0.1:9000'
-)
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_METHODS = (
     'DELETE',
     'GET',
