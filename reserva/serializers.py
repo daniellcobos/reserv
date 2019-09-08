@@ -5,12 +5,17 @@ from rest_framework import serializers
 class HotelListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Discobar
-        fields = ('id','nombre','tipo','ciudad','direccion')
+        fields = ('id','nombre','tipo','ciudad','direccion','dueño')
+        extra_kwargs = {
+          'dueño': {'write_only': True}
+          }
 class RestBarListSerializer(serializers.ModelSerializer):
     class Meta:
         model = RestBar
-        fields = ('id','nombre','tipo','ciudad','direccion')
-
+        fields = ('id','nombre','tipo','ciudad','direccion','dueño')
+        extra_kwargs = {
+          'dueño': {'write_only': True}
+          }
 class MesaSerializer(serializers.ModelSerializer):
     restbar = serializers.SlugRelatedField(
     slug_field='nombre',
@@ -51,9 +56,11 @@ class ReservBRSerializer(serializers.ModelSerializer):
 class InduserSerializer(serializers.ModelSerializer):
     ReservH = ReservHSerializer(many=True,read_only=True)
     ReservBR = ReservBRSerializer(read_only=True,many=True,)
+    Dueñob = serializers.SlugRelatedField(read_only=True,many=True,slug_field='nombre',)
+    Dueñod = serializers.SlugRelatedField(read_only=True,many=True,slug_field='nombre',)
     class Meta:
         model = User
-        fields = ('id','email','name','fondos','ciudad','ReservH','ReservBR',)
+        fields = ('id','email','name','fondos','ciudad','ReservH','ReservBR','Dueñob','Dueñod')
 class ReservHaSerializer(serializers.ModelSerializer):
     mesad =serializers.SlugRelatedField(queryset= MesaD.objects.all(), slug_field='numero')
     
