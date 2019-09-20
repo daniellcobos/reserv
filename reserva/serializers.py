@@ -33,34 +33,50 @@ class HabitacionSerializer(serializers.ModelSerializer):
     class Meta:
         model = MesaD
         fields = '__all__'
+
 class HotelSerializer(serializers.ModelSerializer):
     MesaD = HabitacionSerializer(many=True,read_only=True)
     class Meta:
         model = Discobar
         fields = ('nombre','tipo','ciudad','direccion','MesaD')
+
 class RBSerializer(serializers.ModelSerializer):
     mesa = MesaSerializer(many=True,read_only=True)
     class Meta:
         model = RestBar
         fields = ('nombre','tipo','ciudad','direccion', 'mesa')
+
+class HotelUSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Discobar
+        fields = ('id','nombre')
+
+class RBUSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RestBar
+        fields = ('id','nombre')
+
 class ReservHSerializer(serializers.ModelSerializer):
     mesad =HabitacionSerializer(read_only=True)
     class Meta:
         model = ReservaD
         fields = ('id','diaReserva','diaReservado','cantidad','mesad')
+
 class ReservBRSerializer(serializers.ModelSerializer):
     mesa = MesaSerializer(read_only=True)
     class Meta:
         model = ReservaBR
         fields = ('id','diaReserva','diaReservado','horaReservada','cantidad','mesa')
+
 class InduserSerializer(serializers.ModelSerializer):
     ReservH = ReservHSerializer(many=True,read_only=True)
     ReservBR = ReservBRSerializer(read_only=True,many=True,)
-    Dueñob = serializers.SlugRelatedField(read_only=True,many=True,slug_field='nombre',)
-    Dueñod = serializers.SlugRelatedField(read_only=True,many=True,slug_field='nombre',)
+    Dueñob = RBUSerializer(read_only=True,many=True)
+    Dueñod = HotelUSerializer(read_only=True,many=True,)
     class Meta:
         model = User
         fields = ('id','email','name','fondos','ciudad','ReservH','ReservBR','Dueñob','Dueñod')
+
 class ReservHaSerializer(serializers.ModelSerializer):
     mesad =serializers.SlugRelatedField(queryset= MesaD.objects.all(), slug_field='numero')
     
