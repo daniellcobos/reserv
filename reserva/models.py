@@ -28,13 +28,13 @@ class Discobar(models.Model):
         return self.nombre
 
 class MesaD(models.Model):
-    numero = models.IntegerField(primary_key=True, unique= True)
+    numero = models.CharField(primary_key=True, unique= True, max_length=15)
     capacidad = models.IntegerField()
     discobar = models.ForeignKey(Discobar, related_name='MesaD', on_delete=models.CASCADE)
     def __str__(self):
         return str(self.numero)
 class Mesa(models.Model):
-    numero = models.IntegerField(primary_key=True,unique= True)
+    numero = models.CharField(primary_key=True,unique= True,max_length=15)
     capacidad = models.IntegerField()
     restbar = models.ForeignKey(RestBar, related_name='mesa', on_delete=models.CASCADE)    
     def __str__(self):
