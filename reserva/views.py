@@ -36,6 +36,14 @@ class RestBarList(generics.ListCreateAPIView):
 class HotelDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Discobar.objects.all()
     serializer_class = HotelSerializer
+class MesaList(generics.ListCreateAPIView):
+    queryset = Mesa.objects.all()
+    serializer_class = MesaSerializer
+
+class MesaDList(generics.ListCreateAPIView):
+    queryset = MesaD.objects.all()
+    serializer_class = HabitacionSerializer
+
 
 class RestBarDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = RestBar.objects.all()

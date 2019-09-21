@@ -19,7 +19,7 @@ class RestBarListSerializer(serializers.ModelSerializer):
 class MesaSerializer(serializers.ModelSerializer):
     restbar = serializers.SlugRelatedField(
     slug_field='nombre',
-    read_only=True,
+    queryset= RestBar.objects.all(),
     )
     class Meta:
         model = Mesa
@@ -28,7 +28,8 @@ class MesaSerializer(serializers.ModelSerializer):
 class HabitacionSerializer(serializers.ModelSerializer):
     discobar = serializers.SlugRelatedField(
     slug_field='nombre',
-    read_only=True,
+    queryset= Discobar.objects.all(),
+    
     )
     class Meta:
         model = MesaD

@@ -12,6 +12,8 @@ urlpatterns = [
     path('reservbr', views.ReservBRList.as_view()),
     path('discbares', views.HotelList.as_view()),
     path('restbares', views.RestBarList.as_view()),
+    path('mesa', views.MesaList.as_view()),
+    path('mesad', views.MesaDList.as_view()),
     path('discbares/<int:pk>', views.HotelDetail.as_view()),
     path('restbares/<int:pk>', views.RestBarDetail.as_view()),
     path('brr/<int:pk>', views.borrarreservabr),
